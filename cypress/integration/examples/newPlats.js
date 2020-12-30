@@ -6,13 +6,12 @@ context('new plats', () => {
             // returning false here prevents Cypress from
             // failing the test
             return false
-      })
-        cy.visit('/DocKoiForm.asp')
+        })
     })
 
-    it('go to webpage', () => {
-        cy.get('input[name=avKoi]').should('be.visible').type('S PLAT')
-        cy.get('input[name=avEntryDate]').should('be.visible').type('11/01/2020{enter}')
-        cy.get('input[name=Submit]').click()
+    it('download latest recorded plats', () => {
+        var d = new Date()
+        d.setMonth(d.getMonth() - 1);
+        cy.SearchPlatsRecordedSince(d)
     });
 });

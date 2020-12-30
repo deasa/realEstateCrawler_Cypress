@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("SearchPlatsRecordedSince", (d) => {
+    var s = d.toLocaleDateString("en-US")
+    cy.visit('/DocKoiForm.asp')
+    cy.get('input[name=avKoi]').should('be.visible').type('S PLAT')
+    cy.get('input[name=avEntryDate]').should('be.visible').type(s).type('{enter}')
+    cy.get('input[name=Submit]').click()
+})
